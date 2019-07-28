@@ -1,7 +1,8 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ ²£¥Íªº Include ÀÉ®×¡C
-// ¥Ñ Icon.rc ¨Ï¥Î
+ï»¿//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ ç”¢ç”Ÿçš„ Include æª”æ¡ˆã€‚
+// ç”± Icon.rc ä½¿ç”¨
 //
+#include <windows.h>
 #define IDI_ICON1                       101
 
 // Next default values for new objects

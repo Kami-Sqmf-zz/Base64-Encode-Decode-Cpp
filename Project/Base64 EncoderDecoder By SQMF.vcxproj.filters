@@ -15,26 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Base64 Alpha2.0.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Icon.rc">
+    <ClInclude Include="Res\SQMF.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Res\Icon.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Res\Icon.rc">
       <Filter>資源檔</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Res\base64.ico">
-      <Filter>資源檔</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Icon.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="Base64 by SQMF.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
