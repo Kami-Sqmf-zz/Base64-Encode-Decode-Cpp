@@ -124,6 +124,21 @@ namespace sqmf {
 		//輸入要解密のBase64
 		getline(cin, input);
 		//Input轉成Ascii , Ascii Dec轉Base64 Dec,Dec轉bin
+		for (int i = 0; i < 2; i++) {
+			if (input[input.size() - 2] == '=') {
+				temp = temp.assign(input, 0, input.size() - 2);
+				input = temp;
+				temp = "";
+			}
+			else if (input[input.size() - 1] == '=') {
+				temp = temp.assign(input, 0, input.size() - 1);
+				input = temp;
+				temp = "";
+			}
+			else {
+				break;
+			}
+		}
 		for (size_t i = 0; i < input.size(); i++) {
 			tmp = tmp.assign(input, stmp, 1);
 			Temp = (int)tmp[0];
