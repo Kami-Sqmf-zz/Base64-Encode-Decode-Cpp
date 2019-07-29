@@ -4,8 +4,12 @@
 #include <vector>
 #include<iostream>
 #include<bitset>
+#include<sstream>
 using namespace std;
 #define SQMF
+void ClearConsloe() {
+	system("cls");
+}
 //彩蛋
 namespace easteregg {
 	//Decode::輸入錯誤的彩蛋
@@ -18,6 +22,15 @@ namespace easteregg {
 			getline(cin, option2);
 			if (option2 == "y" || option2 == "Y") {
 				system("shutdown /r /t 20 /c \"你需要再提高你的智商\"");
+				cout << "\n" << "Shutdown -a 可以取消登出\n";
+				break;
+			}
+			else if (option2 == "") {
+				ClearConsloe();
+				cout << "為甚麼不輸入或按Crtl+Z" << "\n" << "我生77了";
+				for (int i = 0, u = 15; i < 15; i++) {
+					system("explorer.exe");
+				}
 				break;
 			}
 			else if (option2 == "n" || option2 == "N") {
@@ -30,9 +43,6 @@ namespace easteregg {
 			}
 		}
 	}
-}
-void ClearConsloe() {
-	system("cls");
 }
 //裝逼の空間命名 <<SQMF>>
 namespace sqmf {
@@ -52,7 +62,6 @@ namespace sqmf {
 		int stmp = 0, temp = 0, Tmp;
 		short int i3;
 		string tmp, input, bin, output;
-		vector <int> finaldec;
 		//主程式開始
 		//輸入要加密の東西
 		getline(cin, input);
