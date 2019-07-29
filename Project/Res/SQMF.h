@@ -4,6 +4,7 @@
 #include <vector>
 #include<iostream>
 #include<bitset>
+#include<sstream>
 using namespace std;
 #define SQMF
 void ClearConsloe() {
@@ -24,10 +25,9 @@ namespace sqmf {
 		//標題
 		system("title Base64 Encode by SQMF");
 		//宣告變數區
-		int stmp = 0, temp = 0,Tmp;
+		int stmp = 0, temp = 0, Tmp;
 		short int i3;
 		string tmp, input, bin, output;
-		vector <int> finaldec;
 		//主程式開始
 		//輸入要加密の東西
 		getline(cin, input);
@@ -68,9 +68,9 @@ namespace sqmf {
 		stmp = 0;
 		//////////
 		//切分為6個Bin,轉十進位,轉Base64的編碼,轉字元,字元放到輸出的後面
-		for (size_t i  = 0; i < bin.size() / 6; i++) {
+		for (size_t i = 0; i < bin.size() / 6; i++) {
 			tmp = tmp.assign(bin, stmp, 6);
-			Tmp=(stoi(tmp, nullptr, 2));
+			Tmp = (stoi(tmp, nullptr, 2));
 			if (Tmp <= 25 && Tmp >= 0) {
 				Tmp = Tmp + 65;
 			}
