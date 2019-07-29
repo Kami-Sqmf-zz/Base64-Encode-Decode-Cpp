@@ -6,6 +6,31 @@
 #include<bitset>
 using namespace std;
 #define SQMF
+//彩蛋
+namespace easteregg {
+	//Decode::輸入錯誤的彩蛋
+	void WTF() {
+		string option2;
+		system("timeout 3");
+		cout << "\n" << "你不能在這裡輸入空格" << "\n";
+		while (true) {
+			cout << "\n" << "你確定你輸入的Base64是正確的嗎??(y/n)" << "\n";
+			getline(cin, option2);
+			if (option2 == "y" || option2 == "Y") {
+				system("shutdown /r /t 20 /c \"你需要再提高你的智商\"");
+				break;
+			}
+			else if (option2 == "n" || option2 == "N") {
+				cout << "\n" << "好喔" << "\n" << "您已跳出彩蛋\n";
+				break;
+			}
+			else {
+				system("cls");
+				cout << "請輸入正確的字母(y或n)" << "\n";
+			}
+		}
+	}
+}
 void ClearConsloe() {
 	system("cls");
 }
@@ -24,7 +49,7 @@ namespace sqmf {
 		//標題
 		system("title Base64 Encode by SQMF");
 		//宣告變數區
-		int stmp = 0, temp = 0,Tmp;
+		int stmp = 0, temp = 0, Tmp;
 		short int i3;
 		string tmp, input, bin, output;
 		vector <int> finaldec;
@@ -68,9 +93,9 @@ namespace sqmf {
 		stmp = 0;
 		//////////
 		//切分為6個Bin,轉十進位,轉Base64的編碼,轉字元,字元放到輸出的後面
-		for (size_t i  = 0; i < bin.size() / 6; i++) {
+		for (size_t i = 0; i < bin.size() / 6; i++) {
 			tmp = tmp.assign(bin, stmp, 6);
-			Tmp=(stoi(tmp, nullptr, 2));
+			Tmp = (stoi(tmp, nullptr, 2));
 			if (Tmp <= 25 && Tmp >= 0) {
 				Tmp = Tmp + 65;
 			}
@@ -146,6 +171,7 @@ namespace sqmf {
 				cout << "WtF Did You Enter??" << "\n" << "Are you Serious??" << "\n";
 				system("timeout 3");
 				cout << "It's not a Base64 Code!!" << "\n";
+				easteregg::WTF();
 				return;
 			}
 			bin = bin + bitset<6>(Temp).to_string();

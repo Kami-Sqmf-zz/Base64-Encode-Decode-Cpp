@@ -11,6 +11,7 @@
  在終端機開啟base64 取得幫助
 
  # Base64-Encode-Decode 彩蛋 Version
+ 注意:可能會偵測到病毒,但對電腦無影響
   開啟最新Base64 EncoderDecoder.exe:
     輸入1和2選取功能
     尋找彩蛋
