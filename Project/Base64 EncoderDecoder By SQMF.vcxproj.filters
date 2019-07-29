@@ -19,17 +19,4 @@
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Res\SQMF.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="Res\Icon.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Res\Icon.rc">
-      <Filter>資源檔</Filter>
-    </ResourceCompile>
-  </ItemGroup>
 </Project>

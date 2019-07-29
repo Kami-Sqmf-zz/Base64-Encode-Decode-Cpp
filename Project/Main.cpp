@@ -1,84 +1,160 @@
-﻿//Base64 Encoder&Decoder by SQMF
+//Base64 Encoder&Decoder by SQMF(Cmd Version)
 //			<<<<<Using UTF-8>>>>>
-
-//v1.0 更新:
-//								修復Decode
-#include "Res/Icon.h" 
-#include "Res/SQMF.h" 
-
-int main()
+#include <string>
+#include <vector>
+#include<iostream>
+#include<bitset>
+#include<sstream>
+using namespace std;
+int main(int argc, char* argv[])
 {
-	//優化Cin&Cout
-	sqmf::power();
-	//標題
-	SetConsoleTitle("Base64 EncoderDecoder by SQMF");
-	//宣告變數區
-	bool tmp = 1, main = 1;
-	string option1, option2;
-	//主程式開始
-	cout << "請選擇加密或解碼" << "\n";
-	while (main == true) {
-		//選單
-		cout << "\n" << "----------" << "\n" << "| 1.加密 |" << "\n" << "| 2.解碼 |" << "\n" << "----------" << "\n";
-		//輸入選項
-		getline(cin, option1);
-		main = 0;
-		//輸入選項1進入Encode
-		if (option1 == "1") {
-			tmp = 1;
-			ClearConsloe();
-			cout << "請輸入你要加密的資料" << "\n";
-			sqmf::encode();
-		}
-		//輸入選項2進入Decode
-		else if (option1 == "2") {
-			tmp = 1;
-			ClearConsloe();
-			cout << "請輸入你要解密的資料" << "\n";
-			sqmf::decode();
-		}
-		//輸入錯誤告知使用者 ex:EOF
-		else if (option1 == "") {
-			ClearConsloe();
-			cout << "你按了Enter或Crtl+Z" << "\n" << "3秒後退出";
-			system("timeout 3");
-			return 0;
-		}
-		//輸入錯誤告知使用者
-		else {
-			tmp = 0;
-			//ClearConsloe();
-			cout << "\n" << "請輸入正確的數字(1或2)" << "\n";
-			main = 1;
-		}
-		//結束後要不要再一次
-		if (tmp == true) {
-			cout << "\n" << "再一次??(y/n)" << "\n";
-			while (true) {
-				getline(cin, option2);
-				if (option2 == "y" || option2 == "Y") {
-					ClearConsloe();
-					main = 1;
-					break;
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	system("title Base64 EncoderDecoder by SQMF");
+	char* arg1 = argv[1];char* arg2 = argv[2];string input, tmp, bin,temp, output;int stmp = 0, Tmp;short int i3;
+	if (argc <2) {
+		cout << "�ϥΤ覡 : base64 [-e|-d] [ \"Code\" ]\n\n-e    Encode\n\n-d    Decode\n\n�d��:   base64 -e \"base64endecode\"\n        base64 -d \"base64endecode\"\n\n";
+		return 0;
+	}
+	switch (arg1[1]) {
+		case 'e':
+			input = arg2;
+			system("title Base64 Encode by SQMF");
+			i3 = input.size() % 3;
+			for (int i = 0; i < input.size(); i++) {
+				stmp = int(input[i]);
+				bin = bin + bitset<8>(stmp).to_string();
+			}
+			switch (bin.size() % 6) {
+			default:
+				break;
+			case 1:
+				bin = bin + "00000";
+				break;
+			case 2:
+				bin = bin + "0000";
+				break;
+			case 3:
+				bin = bin + "000";
+				break;
+			case 4:
+				bin = bin + "00";
+				break;
+			case 5:
+				bin = bin + "0";
+				break;
+			}stmp = 0;
+			for (size_t i = 0; i < bin.size() / 6; i++) {
+				tmp = tmp.assign(bin, stmp, 6);
+				Tmp = (stoi(tmp, nullptr, 2));
+				if (Tmp <= 25 && Tmp >= 0) {
+					Tmp = Tmp + 65;
 				}
-				else if (option2 == "n" || option2 == "N") {
-					main = 0;
-					break;
+				else if (Tmp <= 51 && Tmp >= 26) {
+					Tmp = Tmp + 71;
 				}
-				else if (option2 == "") {
-					tmp = 0;
-					ClearConsloe();
-					cout << "你按了Enter或Crtl+Z" << "\n" << "3秒後退出";
-					system("timeout 3");
-					return 0;
+				else if (Tmp <= 61 && Tmp >= 52) {
+					Tmp = Tmp - 4;
+				}
+				else if (Tmp == 62) {
+					Tmp = 43;
+				}
+				else if (Tmp == 63) {
+					Tmp = 47;
 				}
 				else {
-					system("cls");
-					cout << "請輸入正確的字母(y或n)" << "\n";
+					cout << "Input Error(��J���~)" << "\n\n";
+					return 0;
+				}
+				tmp = char(Tmp);
+				stmp = stmp + 6;
+				output += tmp;
+			}
+			switch (i3) {
+			case(1):
+				output += "==";
+				break;
+			case(2):
+				output += "=";
+				break;
+			default:
+				break;
+			}
+			cout << "\n" << "�A��Base64�[�K:" << "\n" << output << "\n" << "\n";
+			return 0;
+		case 'd':
+			input = arg2;
+			for (int i = 0; i < 2; i++) {
+				if (input[input.size() - 2] == '=') {
+					temp = temp.assign(input, 0, input.size() - 2);
+					input = temp;
+					temp = "";
+				}
+				else if (input[input.size() - 1] == '=') {
+					temp = temp.assign(input, 0, input.size() - 1);
+					input = temp;
+					temp = "";
+				}
+				else {
+					break;
 				}
 			}
-		}
+			for (size_t i = 0; i < input.size(); i++) {
+				tmp = tmp.assign(input, stmp, 1);
+				Tmp = (int)tmp[0];
+				if (Tmp <= 90 && Tmp >= 65) {
+					Tmp = Tmp - 65;
+				}
+				else if (Tmp <= 122 && Tmp >= 97) {
+					Tmp = Tmp - 71;
+				}
+				else if (Tmp <= 57 && Tmp >= 48) {
+					Tmp = Tmp + 4;
+				}
+				else if (Tmp == 43) {
+					Tmp = 62;
+				}
+				else if (Tmp == 47) {
+					Tmp = 63;
+				}
+				else {
+					cout << "Input Error(��J���~)" << "\n\n";
+					return 0;
+				}
+				bin = bin + bitset<6>(Tmp).to_string();
+				stmp++;
+			}
+			switch (bin.size() % 8) {
+			case(1):
+				temp = temp.append(bin, 0, bin.size() - 1);
+				break;
+			case(2):
+				temp = temp.append(bin, 0, bin.size() - 2);
+				break;
+			case(3):
+				temp = temp.append(bin, 0, bin.size() - 3);
+				break;
+			case(4):
+				temp = temp.append(bin, 0, bin.size() - 4);
+				break;
+			case(5):
+				temp = temp.append(bin, 0, bin.size() - 5);
+				break;
+			default:
+				temp = temp.append(bin, 0, bin.size());
+				break;
+			}
+			stmp = 0;
+			for (size_t i = 0; i < temp.size() / 8; i++) {
+				tmp = tmp.assign(temp, stmp, 8);
+				Tmp = stoi(tmp, nullptr, 2);
+				tmp = char(Tmp);
+				stmp = stmp + 8;
+				output += tmp;
+			}
+			cout << "\n" << "�A�Q�n���F��:" << "\n" << output << "\n" << "\n";
+			return 0;
+		default:
+			cout << "�ϥΤ覡 : base64 [-e|-d] [ \"Code\" ]\n\n-e    Encode\n\n-d    Decode\n\n�d��:   base64 -e \"base64endecode\"\n        base64 -d \"base64endecode\"\n\n";			return 0;
 	}
-	//結束
-	return 0;
 }
