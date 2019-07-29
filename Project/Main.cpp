@@ -1,11 +1,8 @@
 ﻿//Base64 Encoder&Decoder by SQMF
 //			<<<<<Using UTF-8>>>>>
 
-//進度:
-//			選單&標題&圖示&Encode&Decode 100%
-//			GUI,雙語言支持 0%
-//v0.2 更新:
-//								修復輸入EOF的無限迴圈
+//v1.0 更新:
+//								修復Decode
 #include "Res/Icon.h" 
 #include "Res/SQMF.h" 
 
